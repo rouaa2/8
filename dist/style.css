@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #FF95CA;
+    background-color: #FFF9C4;
     overflow: hidden; /* 隱藏捲軸 */
     font-family: sans-serif;
 }
@@ -15,14 +15,14 @@
     border: 1px solid #000;
     position: relative;
     overflow: hidden; /* 隱藏超出範圍的元素 */
-    background-color: #FF95CA;
+    background-color: #FFF9C4;
 }
 
 #dino {
     width: 30px;
     height: 40px;
     /* 暫時代替圖片，你可以用 background-image 替換 */
-    background-color: #FF95CA;
+    background-color: #FFF9C4;
     background-image: url('dino.png'); /* 加上這行並提供圖片 */
     /* background-size: cover; */
     position: absolute;
