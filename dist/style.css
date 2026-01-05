@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #a7f7f7;
+    background-color: #FF95CA;
     overflow: hidden; /* 隱藏捲軸 */
     font-family: sans-serif;
 }
@@ -15,7 +15,7 @@
     border: 1px solid #000;
     position: relative;
     overflow: hidden; /* 隱藏超出範圍的元素 */
-    background-color: white;
+    background-color: #FF95CA;
 }
 
 #dino {
