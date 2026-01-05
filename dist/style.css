@@ -1,33 +1,34 @@
-﻿body {
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #C4E1FF;
+    background-color: #000000; /* 深黑色背景 */
     overflow: hidden; /* 隱藏捲軸 */
-    font-family: sans-serif;
+    font-family: 'Courier New', Courier, monospace; /* 使用更具對比感的等寬字體 */
 }
 
 #game-container {
     width: 900px;
     height: 380px;
-    border: 1px solid #000;
+    border: 4px solid #FFFF00; /* 鮮黃色邊框 */
     position: relative;
     overflow: hidden; /* 隱藏超出範圍的元素 */
-    background-color: #C4E1FF;
+    background-color: #1A1A1A; /* 深灰色遊戲區域 */
 }
 
 #dino {
     width: 30px;
     height: 40px;
-    /* 暫時代替圖片，你可以用 background-image 替換 */
-    background-color: ;
-    background-image: url('dino.png'); /* 加上這行並提供圖片 */
-    /* background-size: cover; */
+    background-color: #00FF00; /* 螢光綠恐龍（如果圖片沒載入） */
+    background-image: url('dino.png');
+    background-size: contain;
+    background-repeat: no-repeat;
     position: absolute;
     bottom: 20px; /* 初始位置在地面上 */
     left: 50px;
+    filter: drop-shadow(0 0 5px #00FF00); /* 增加發光效果 */
 }
 
 #dino.jump {
@@ -40,41 +41,44 @@
     100% { bottom: 20px; }
 }
 
-
 #ground {
     width: 100%;
-    height: 20px;
-    background-color: #333;
+    height: 4px;
+    background-color: #FFFF00; /* 鮮黃色地面 */
     position: absolute;
-    bottom: 0;
+    bottom: 16px;
     left: 0;
+    box-shadow: 0 0 10px #FFFF00;
 }
 
 .obstacle {
     width: 20px;
     height: 40px;
-    /* 暫時代替圖片 */
-    background-color: darkgreen;
+    background-color: #FF00FF; /* 鮮豔的洋紅色障礙物 */
     position: absolute;
     bottom: 20px; /* 在地面上 */
     right: -30px; /* 從右邊螢幕外開始 */
-    /* 可以為不同仙人掌設定不同寬高和背景圖 */
+    box-shadow: 0 0 8px #FF00FF;
 }
 
 #score {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 18px;
-    color: #555;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #00FFFF; /* 青色分數，對比強烈 */
+    text-shadow: 2px 2px #000;
 }
 
 #instructions {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 14px;
-    color: #888;
+    top: 15px;
+    left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF; /* 白色指令 */
+    text-shadow: 1px 1px #000;
 }
 
 #game-over {
@@ -82,18 +86,32 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
-    color: red;
+    font-size: 36px;
+    font-weight: bold;
+    color: #FF0000; /* 鮮紅色遊戲結束字樣 */
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    border: 3px solid #FF0000;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #FF0000;
+    z-index: 100;
 }
 
 #restart-button {
-    margin-top: 10px;
-    padding: 8px 15px;
-    font-size: 16px;
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
+    background-color: #FFFF00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    transition: transform 0.1s;
+}
+
+#restart-button:hover {
+    background-color: #00FF00;
+    transform: scale(1.1);
 }
