@@ -4,14 +4,19 @@ const scoreDisplay = document.getElementById('score');
 const instructions = document.getElementById('instructions');
 const gameOverDisplay = document.getElementById('game-over');
 const restartButton = document.getElementById('restart-button');
+const bgFar = document.getElementById('parallax-bg-far');
+const bgNear = document.getElementById('parallax-bg-near');
 
 let score = 0;
+let bgFarPos = 0;
+let bgNearPos = 0;
 let isJumping = false;
 let isGameOver = false;
 let gameSpeed = 5; // 初始速度 (像素/幀)
 let obstacleInterval;
 let gameLoopInterval;
 let scoreInterval;
+let bgInterval;
 let obstacleSpawnTimer = 2000; // 初始生成間隔 (毫秒)
 
 // --- 跳躍功能 ---
@@ -119,6 +124,7 @@ function gameOver() {
     isGameOver = true;
     clearInterval(gameLoopInterval);
     clearInterval(scoreInterval);
+    clearInterval(bgInterval);
     clearInterval(obstacleInterval); // 停止生成新的障礙物
 
     // 停止所有現存障礙物的移動 (透過moveObstacle內的檢查)
@@ -146,6 +152,7 @@ function restartGame() {
     // 清除可能殘留的計時器
     clearInterval(gameLoopInterval);
     clearInterval(scoreInterval);
+    clearInterval(bgInterval);
     clearInterval(obstacleInterval);
 
     // 重新開始遊戲循環
@@ -154,12 +161,27 @@ function restartGame() {
 
 restartButton.addEventListener('click', restartGame);
 
+// --- 視差背景滾動 ---
+function updateParallax() {
+    if (isGameOver) return;
+
+    // 遠景移動速度較慢 (例如遊戲速度的 10%)
+    bgFarPos -= gameSpeed * 0.1;
+    // 近景移動速度稍快 (例如遊戲速度的 30%)
+    bgNearPos -= gameSpeed * 0.3;
+
+    // 循環滾動處理 (當移動超過一個容器寬度時重置)
+    if (bgFarPos <= -900) bgFarPos = 0;
+    if (bgNearPos <= -900) bgNearPos = 0;
+
+    bgFar.style.transform = `translateX(${bgFarPos}px)`;
+    bgNear.style.transform = `translateX(${bgNearPos}px)`;
+}
+
 // --- 遊戲啟動 ---
 function startGame() {
     console.log("Game Started!");
     isGameOver = false; // 確保是可玩狀態
-    // 使用 setInterval 控制遊戲的主要循環（障礙物生成、計分）
-    // 注意：障礙物移動已在 moveObstacle 內由各自的 setInterval 控制
 
     // 定期生成障礙物
     obstacleInterval = setInterval(createObstacle, obstacleSpawnTimer);
@@ -167,15 +189,8 @@ function startGame() {
     // 定期更新分數
     scoreInterval = setInterval(updateScore, 100); // 每 100ms 加一分
 
-    // gameLoopInterval 現在主要用於檢查遊戲狀態或未來擴展，
-    // 因為移動和碰撞已分散處理。可以保留用於增加難度等。
-    // gameLoopInterval = setInterval(() => {
-    //    if(isGameOver) {
-    //        clearInterval(gameLoopInterval);
-    //    }
-        // 可以在這裡加入其他全局邏輯
-    // }, 50);
-
+    // 啟動視差背景滾動
+    bgInterval = setInterval(updateParallax, 20);
 }
 
 // 頁面載入後自動開始遊戲 (或者你可以改成按鈕觸發)
