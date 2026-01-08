@@ -51,14 +51,14 @@ function createObstacle() {
     // 隨機仙人掌大小 (可選)
     // let randomHeight = Math.random() * 20 + 30; // 30-50px 高
     // obstacle.style.height = randomHeight + 'px';
-    obstacle.style.right = '-30px'; // 從右側畫面外開始
+    obstacle.style.right = '-40px'; // 從右側畫面外開始
     gameContainer.appendChild(obstacle);
 
     moveObstacle(obstacle);
 }
 
 function moveObstacle(obstacle) {
-    let obstaclePosition = gameContainer.offsetWidth + 30; // 從容器寬度外開始
+    let obstaclePosition = gameContainer.offsetWidth + 40; // 從容器寬度外開始
 
     let moveInterval = setInterval(() => {
         if (isGameOver) {

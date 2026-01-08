@@ -91,14 +91,16 @@ body {
 }
 
 .obstacle {
-    width: 25px;
-    height: 45px;
-    background-color: #FF4500; /* 橙紅色障礙物，在藍天下很顯眼 */
+    width: 40px;
+    height: 40px;
+    background-image: url('monster.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
     position: absolute;
     bottom: 20px; /* 在地面上 */
-    right: -30px; /* 從右邊螢幕外開始 */
-    border-radius: 5px 5px 0 0;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    right: -40px; /* 從右邊螢幕外開始 */
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
 }
 
 #score {
